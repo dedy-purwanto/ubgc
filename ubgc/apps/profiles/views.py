@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, UpdateView, TemplateView
+from django.views.generic import DetailView, UpdateView, TemplateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
@@ -54,3 +54,9 @@ class UpdateView(UpdateView):
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your profile has been saved")
         return reverse("profiles:update")
+
+
+class VoteDeleteView(DeleteView):
+
+    model = Vote
+    template_name = 'profiles/votes_delete.html'
