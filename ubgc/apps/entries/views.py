@@ -26,8 +26,7 @@ class EntryCreateUpdateMixin(object):
         else:
             form = form_class(request.POST or None)
 
-        screenshot_formset = self.ScreenshotFormSet(request.POST or None, 
-                request.FILES or None)
+        screenshot_formset = self.ScreenshotFormSet(request.POST, request.FILES)
 
         if form.is_valid() and screenshot_formset.is_valid():
             return self.form_valid(form)
@@ -36,15 +35,18 @@ class EntryCreateUpdateMixin(object):
 
     def form_valid(self, form):
         self.object = form.save(self.request.user)
-        screenshot_formset = self.ScreenshotFormSet(self.request.POST or None, 
-                self.request.FILES or None, instance=self.object)
-        screenshot_formset.save()
+        entry = self.get_object()
+        screenshot_formset = self.ScreenshotFormSet(self.request.POST, 
+                self.request.FILES, instance=entry)
+        if screenshot_formset.is_valid():
+            screenshot_formset.save()
         return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super(EntryCreateUpdateMixin, self).get_context_data(**kwargs)
 
-        screenshot_formset = self.ScreenshotFormSet(self.request.POST or None, self.request.FILES or None)
+        screenshot_formset = self.ScreenshotFormSet(self.request.POST or None, 
+                self.request.FILES or None, instance=self.get_object())
         if screenshot_formset.is_valid():
             pass
         context['screenshot_formset'] = screenshot_formset
