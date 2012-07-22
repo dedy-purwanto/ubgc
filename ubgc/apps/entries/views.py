@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, UpdateView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.forms.models import inlineformset_factory
 
@@ -19,14 +20,10 @@ class EntryCreateUpdateMixin(object):
         self.object = None
         form_class = self.get_form_class()
 
-        pk = self.kwargs.get('pk', None)
+        form = form_class(request.POST or None, instance=self.get_object())
 
-        if pk is not None:
-            form = form_class(request.POST or None, instance=self.get_object())
-        else:
-            form = form_class(request.POST or None)
-
-        screenshot_formset = self.ScreenshotFormSet(request.POST, request.FILES)
+        screenshot_formset = self.ScreenshotFormSet(request.POST, 
+                request.FILES, instance=self.get_object())
 
         if form.is_valid() and screenshot_formset.is_valid():
             return self.form_valid(form)
@@ -56,6 +53,12 @@ class EntryCreateUpdateMixin(object):
 
 class CreateView(EntryCreateUpdateMixin, CreateView):
 
+    def get_object(self, *args, **kwargs):
+        if self.object is None:
+            self.object = Entry()
+        
+        return self.object
+
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your entry has been submitted")
         return reverse("profiles:detail", args=[self.request.user.pk])
@@ -64,8 +67,8 @@ class CreateView(EntryCreateUpdateMixin, CreateView):
 class UpdateView(EntryCreateUpdateMixin, UpdateView):
 
     def get_object(self, *args, **kwargs):
-        pk = self.kwargs['pk']
-        return Entry.objects.get(pk=pk, user=self.request.user)
+        entry = get_object_or_404(Entry, pk=self.kwargs['pk'], user=self.request.user)
+        return entry
 
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your entry has been saved")
