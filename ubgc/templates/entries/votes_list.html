@@ -19,7 +19,7 @@
                     <td><a href='{% url "entries:play" vote.entry.pk vote.entry.slug %}'>{{vote.entry.title}}</a></td>
                     <td>{{vote.date_added}}</td>
                     <td>
-                        <a href="">Remove</a>
+                        <a href="{% url "entries:votes_delete" vote.pk %}">Remove</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -45,7 +45,7 @@
                     <td><a href='{% url "entries:play" vote.entry.pk vote.entry.slug %}'>{{vote.entry.title}}</a></td>
                     <td>{{vote.date_added}}</td>
                     <td>
-                        <a href="">Remove</a>
+                        <a href="{% url "entries:votes_delete" vote.pk %}">Remove</a>
                     </td>
                 </tr>
                 {% endfor %}
