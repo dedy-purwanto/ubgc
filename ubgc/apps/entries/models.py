@@ -1,6 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save, pre_delete
+from django.dispatch import receiver
 from easy_thumbnails.fields import ThumbnailerImageField
 
 class Entry(models.Model):
@@ -35,6 +37,8 @@ class Entry(models.Model):
         ordering = ('title',)
 
 
+
+
 class Vote(models.Model):
 
     entry = models.ForeignKey(Entry, related_name='votes')
@@ -56,6 +60,17 @@ class Vote(models.Model):
         return "%s - %s" % (self.entry.title, self.user)
 
 
+@receiver(post_save, sender=Vote)
+def vote_post_save(sender, instance, created, **kwargs):
+    if created:
+        instance.entry.calculate_votes()
+
+@receiver(pre_delete, sender=Vote)
+def vote_pre_delete(sender, instance, **kwargs):
+    instance.entry.calculate_votes()
+    
+
+
 class Screenshot(models.Model):
 
     entry = models.ForeignKey(Entry, related_name='photos')
@@ -64,3 +79,5 @@ class Screenshot(models.Model):
 
     def __unicode__(self):
         return "Screenshot %s - %s" % (self.pk, self.entry.title)
+
+
