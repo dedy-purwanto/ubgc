@@ -4,7 +4,7 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 class Profile(models.Model):
 
-    user = models.ForeignKey(User, related_name='profile')
+    user = models.OneToOneField(User, related_name='profile')
     bio = models.TextField(blank=True, null=True)
     photo = ThumbnailerImageField(upload_to='institution/photo/%Y/%m/%d', 
             blank=True, null=True)
