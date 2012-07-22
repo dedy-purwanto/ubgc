@@ -17,7 +17,9 @@
             <tbody>
                 {% for entry in request.user.entries.all %}
                 <tr>
-                    <td><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></td>
+                    <td><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a>
+                        {% if entry.disabled %}<span class="label">Disabled</span>{% endif %}
+                    </td>
                     <td>{{entry.date_added}}</td>
                     <td>{{entry.date_modified}}</td>
                     <td>{{entry.votes.all.count}}</td>
