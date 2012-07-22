@@ -81,7 +81,7 @@ class EntryDeleteView(DeleteView):
     template_name = 'entries/delete.html'
 
     def get_object(self, *args, **kwargs):
-        return Entry.objects.get(pk=self.kwargs['pk'], user=self.request.user)
+        return get_object_or_404(Entry, pk=self.kwargs['pk'], user=self.request.user)
 
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your entry has been removed")
@@ -148,7 +148,7 @@ class VoteDeleteView(DeleteView):
     template_name = 'entries/votes_delete.html'
 
     def get_object(self, *args, **kwargs):
-        return Vote.objects.get(pk=self.kwargs['pk'], user=self.request.user)
+        return get_object_or_404(Vote, pk=self.kwargs['pk'], user=self.request.user)
 
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your vote has been removed")
