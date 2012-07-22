@@ -32,4 +32,4 @@ class VoteForm(forms.ModelForm):
     class Meta:
 
         model = Vote
-        exclude = ('user', 'date_added',)
+        exclude = ('entry', 'user', 'date_added',)
