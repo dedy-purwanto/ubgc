@@ -86,7 +86,7 @@ class DetailView(DetailView):
         entry = context['entry']
 
         can_vote = False
-        if self.request.is_authenticated:
+        if self.request.user.is_authenticated():
             try:
                 Vote.objects.get(entry=entry, user=self.request.user)
             except Vote.DoesNotExist:
