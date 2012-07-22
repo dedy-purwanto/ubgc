@@ -27,7 +27,7 @@ class Vote(models.Model):
 class Screenshot(models.Model):
 
     entry = models.ForeignKey(Entry)
-    photo = ThumbnailerImageField(upload_to='institution/photo/%Y/%m/%d')
+    photo = ThumbnailerImageField(upload_to='entries/photo/%Y/%m/%d')
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
