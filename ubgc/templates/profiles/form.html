@@ -5,35 +5,37 @@
         <h1>Edit Profile</h1>
     </div>
     <form method="POST">
-        <div class="control-group">
-            <label class="control-label" for="id_{{form.name.name}}">Name</label>
-            <div class="controls">
-                {{form.name}}
-                <span class="help-inline">Your full name</span>
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label" for="id_{{form.name.name}}">Name</label>
+                <div class="controls">
+                    {{form.name}}
+                    <span class="help-inline">Your full name</span>
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="id_{{form.email.name}}">Email</label>
-            <div class="controls">
-                {{form.email}}
-                <span class="help-inline">Your email will not be shown to anyone</span>
+            <div class="control-group">
+                <label class="control-label" for="id_{{form.email.name}}">Email</label>
+                <div class="controls">
+                    {{form.email}}
+                    <span class="help-inline">Your email will not be shown to anyone</span>
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="id_{{form.bio.name}}">Bio</label>
-            <div class="controls">
-                {{form.bio}}
-                <span class="help-inline">Your short bio, including websites and other stuff</span>
+            <div class="control-group">
+                <label class="control-label" for="id_{{form.bio.name}}">Bio</label>
+                <div class="controls">
+                    {{form.bio}}
+                    <span class="help-inline">Your short bio, including websites and other stuff</span>
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="id_{{form.photo.name}}">Avatar</label>
-            <div class="controls">
-                {{form.photo}}
+            <div class="control-group">
+                <label class="control-label" for="id_{{form.photo.name}}">Avatar</label>
+                <div class="controls">
+                    {{form.photo}}
+                </div>
             </div>
-        </div>
-        {% csrf_token %}
-        <input type="submit">
+            {% csrf_token %}
+        </fieldset>
+        <input type="submit" class="btn btn-primary">
     </form>
     
 </div>
