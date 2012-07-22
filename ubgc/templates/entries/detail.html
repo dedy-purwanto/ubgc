@@ -34,6 +34,18 @@
     <div class='pull-right'>
         <h1 class="vote_num">{{entry.votes.all.count}}</h1>
         <h2 class='pull-right'>votes</h2>
+        {% if can_vote %}
+        <form method="post" action="{% url "entries:vote" entry.pk %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary pull-right" value="Vote">
+        </form>
+        {% else %}
+            {% if request.user.is_authenticated %}
+                <h3>You've voted this</h3>
+            {% else %}
+                <h3>Login to vote</h3>
+            {% endif %}
+        {% endif %}
     </div>
 
 </div>
