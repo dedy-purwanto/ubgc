@@ -15,6 +15,10 @@ class Entry(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     num_votes = models.IntegerField(default=0)
 
+    def calculate_votes(self):
+        self.num_votes = self.votes.all.count()
+        self.save()
+
     @property
     def slug(self):
         return slugify(self.title)
