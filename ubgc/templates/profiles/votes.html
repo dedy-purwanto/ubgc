@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+<div class="span12">
+    <div class="row">
+        <h1>Given votes from you</h1><hr />
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Entry title</th>
+                    <th>Date voted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vote in votes_given %}
+                <tr>
+                    <td><a href='{% url "entries:play" vote.entry.pk vote.entry.slug %}'>{{vote.entry.title}}</a></td>
+                    <td>{{vote.date_added}}</td>
+                    <td>
+                        <a href="">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<hr />
+<div class="span12">
+    <div class="row">
+        <h1>Received votes for your entries</h1><hr />
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Entry title</th>
+                    <th>Date received</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vote in votes_received %}
+                <tr>
+                    <td><a href='{% url "entries:play" vote.entry.pk vote.entry.slug %}'>{{vote.entry.title}}</a></td>
+                    <td>{{vote.date_added}}</td>
+                    <td>
+                        <a href="">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
