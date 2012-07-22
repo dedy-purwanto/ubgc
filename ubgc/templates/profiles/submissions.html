@@ -22,7 +22,7 @@
                     </td>
                     <td>{{entry.date_added}}</td>
                     <td>{{entry.date_modified}}</td>
-                    <td>{{entry.votes.all.count}}</td>
+                    <td>{{entry.num_votes}}</td>
                     <td>
                         <a href="{% url "entries:edit" entry.pk %}">Edit</a> | 
                         <a href="{% url "entries:disable" entry.pk %}">{% if entry.disabled %}Enable{% else %}Disable{% endif %}</a> | 
