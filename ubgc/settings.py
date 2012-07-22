@@ -68,6 +68,7 @@ AUTHENTICATION_BACKENDS = (
 ROOT_URLCONF = 'ubgc.urls'
 
 TEMPLATE_DIRS = (
+    PROJECT_PATH + '/templates',
 )
 
 INSTALLED_APPS = (
