@@ -1,5 +1,5 @@
 from django.views.generic import CreateView, UpdateView, DetailView, \
-        TemplateView, DeleteView
+        TemplateView, DeleteView, TemplateView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -85,6 +85,26 @@ class EntryDeleteView(DeleteView):
 
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your entry has been removed")
+        return reverse("profiles:submissions")
+
+
+class EntryDisableView(TemplateView): 
+
+    template_name = 'entries/disable.html'
+
+    def post(self, *args, **kwargs):
+        entry = self.get_object()
+        entry.disabled = False if entry.disabled else True
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_object(self, *args, **kwargs):
+        return get_object_or_404(Entry, pk=self.kwargs['pk'], user=self.request.user)
+
+    def get_success_url(self, *args, **kwargs):
+        if self.get_object().disabled:
+            messages.success(self.request, "Your entry has been disabled")
+        else:
+            messages.success(self.request, "Your entry has been enabled")
         return reverse("profiles:submissions")
 
 
