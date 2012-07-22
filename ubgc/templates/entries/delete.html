@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load thumbnail%}
+{% block content %}
+<h1>Remove Vote</h1><hr />
+<div class="span12">
+    Are you sure you want to remove your entry 
+    <strong><a href='{% url "entries:play" object.pk object.slug %}'>{{object.title}}</a></strong>?
+    <span class="label warning">Warning: This is irreversible, all comment and votes for this entry will be gone!</a>
+    <br />
+    <br />
+
+    <form method='post'>
+        <input type="submit" class="btn" value="Yes, remove it"> 
+        {% csrf_token %}
+        <a href="{% url "profiles:submissions" %}" class="btn btn-primary">Cancel</a>
+    </form>
+    
+</div>
+{% endblock %}
