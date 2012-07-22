@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from easy_thumbnails.fields import ThumbnailerImageField
 
 class Profile(models.Model):
@@ -20,3 +22,10 @@ class Profile(models.Model):
             return self.user.first_name
         else:
             return self.user.username
+
+
+@receiver(post_save, sender=User)
+def user_post_save(sender, instance, created, **kwargs):
+    if created and not instance.pk == 1:
+        Profile.objects.create(user=instance)
+
