@@ -38,7 +38,7 @@ class Vote(models.Model):
 
 class Screenshot(models.Model):
 
-    entry = models.ForeignKey(Entry)
+    entry = models.ForeignKey(Entry, related_name='photos')
     photo = ThumbnailerImageField(upload_to='entries/photo/%Y/%m/%d')
     date_added = models.DateTimeField(auto_now_add=True)
 
