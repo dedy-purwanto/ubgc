@@ -17,6 +17,21 @@ class ProfileForm(forms.ModelForm):
         except Profile.DoesNotExist:
             pass
 
+    def save(self, *args, **kwargs):
+        email = self.cleaned_data.get(['email'], None)
+        name = self.cleaned_data.get(['name'], None)
+
+        if name:
+            self.instance.user.first_name = name
+
+        if email:
+            self.instance.user.email = email
+
+        self.instance.user.save()
+
+        super(ProfileForm, self).save(*args, **kwargs)
+
+
     class Meta:
         model = Profile
         exclude = ('user', )
