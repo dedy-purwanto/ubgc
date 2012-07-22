@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from easy_thumbnails.fields import ThumbnailerImageField
 
@@ -12,6 +13,10 @@ class Entry(models.Model):
     disabled = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+
+    @property
+    def slug(self):
+        return slugify(self.title)
 
     def __unicode__(self):
         return self.title
