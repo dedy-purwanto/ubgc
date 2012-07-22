@@ -1,5 +1,5 @@
 from django.views.generic import DetailView, UpdateView
-from django.core.urlsresolvers import reverse
+from django.core.urlresolvers import reverse
 
 from .models import Profile
 from .forms import ProfileForm
