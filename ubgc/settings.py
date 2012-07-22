@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'socialregistration.contrib.twitter',
     'south',
     'widget_tweaks',
+    'easy_thumbnails',
 
     'entries',
     'home',
