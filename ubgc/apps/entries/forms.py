@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Entry, Screenshot
+from .models import Entry, Screenshot, Vote
 
 class EntryForm(forms.ModelForm):
 
@@ -23,5 +23,13 @@ class ScreenshotForm(forms.ModelForm):
 
     class Meta:
 
-        model  = Screenshot
+        model = Screenshot
         exclude = ('entry', 'date_added')
+
+
+class VoteForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Vote
+        exclude = ('user', 'date_added',)
