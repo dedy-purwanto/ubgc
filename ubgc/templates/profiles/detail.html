@@ -60,7 +60,7 @@
                 <tr>
                     <td><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></td>
                     <td>{{entry.date_added}}</td>
-                    <td>{{entry.votes.all.count}}</td>
+                    <td>{{entry.num_votes}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
