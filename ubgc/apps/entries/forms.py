@@ -14,6 +14,7 @@ class EntryForm(forms.ModelForm):
         model = Entry
         exclude = (
                 'user',
+                'num_votes',
                 'date_added',
                 'date_modified',
         )
