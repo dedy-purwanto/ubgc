@@ -100,6 +100,11 @@ class EntryDisableView(TemplateView):
     def get_object(self, *args, **kwargs):
         return get_object_or_404(Entry, pk=self.kwargs['pk'], user=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        context = super(EntryDisableView, self).get_context_data(**kwargs)
+        context['object'] = self.get_object()
+        return context
+
     def get_success_url(self, *args, **kwargs):
         if self.get_object().disabled:
             messages.success(self.request, "Your entry has been disabled")
