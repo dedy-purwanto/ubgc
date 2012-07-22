@@ -13,7 +13,7 @@ class HomeView(TemplateView):
         top_entries = entries.order_by('-num_votes')
         recent_entries = entries.order_by('-date_modified')
 
-        context['top_entries'] = top_entries
-        context['recent_entries'] = recent_entries
+        context['top_entries'] = top_entries[:15]
+        context['recent_entries'] = recent_entries[:15]
 
         return context
