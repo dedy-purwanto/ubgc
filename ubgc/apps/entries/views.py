@@ -94,7 +94,8 @@ class EntryDisableView(TemplateView):
 
     def post(self, *args, **kwargs):
         entry = self.get_object()
-        entry.disabled = False if entry.disabled else True
+        entry.disabled = True if entry.disabled else True
+        entry.save()
         return HttpResponseRedirect(self.get_success_url())
 
     def get_object(self, *args, **kwargs):
