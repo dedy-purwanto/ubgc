@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, url
 from django.contrib.auth.decorators import login_required
 
 from .views import EntryCreateView, EntryUpdateView, DetailView, \
-    VoteCreateView, VoteListView
+    VoteCreateView, VoteListView, VoteDeleteView
 
 urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/edit/$', login_required(EntryUpdateView.as_view()), name='edit'),
@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/play/(?P<slug>[-\w]+)/$', DetailView.as_view(), name='play'),
     url(r'^new/$', login_required(EntryCreateView.as_view()), name='new'),
     url(r'^votes/$', login_required(VoteListView.as_view()), name='votes'),
+    url(r'^votes/(?P<pk>\d+)/delete/$', login_required(VoteDeleteView.as_view()), name='votes_delete'),
 )
