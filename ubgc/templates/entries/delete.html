@@ -5,8 +5,8 @@
 <h1>Remove Vote</h1><hr />
 <div class="span12">
     Are you sure you want to remove your entry 
-    <strong><a href='{% url "entries:play" object.pk object.slug %}'>{{object.title}}</a></strong>?
-    <span class="label warning">Warning: This is irreversible, all comment and votes for this entry will be gone!</a>
+    <strong><a href='{% url "entries:play" object.pk object.slug %}'>{{object.title}}</a></strong>?<br />
+    <span class="label label-important">Warning: This is irreversible, all comment and votes for this entry will be gone!</a></span>
     <br />
     <br />
 
