@@ -18,6 +18,19 @@ td, th{
     font-size:13px;
 }
 
+.navbar .container .nav li a{
+    color:#fff;
+
+}
+.navbar .container .nav .dropdown li a{
+    color:#000;
+
+}
+.navbar .container .nav .dropdown li a:hover{
+    color:#fff;
+
+}
+
 .vote_num{
     font-size:120px;
     padding-top:60px;
