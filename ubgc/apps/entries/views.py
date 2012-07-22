@@ -108,7 +108,8 @@ class VoteCreateView(CreateView):
     template_name = 'entries/vote_form.html'
 
     def form_valid(self, form):
-        self.object = form.save(self.request.user)
+        entry = Entry.objects.get(pk=self.kwargs['pk'])
+        self.object = form.save(self.request.user, entry)
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self, *args, **kwargs):
