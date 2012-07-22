@@ -6,6 +6,7 @@
     </div>
     <form method="POST">
         {{form}}
+        {% csrf_token %}
         <input type="submit">
     </form>
     
