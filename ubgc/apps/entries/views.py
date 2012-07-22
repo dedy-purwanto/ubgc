@@ -3,6 +3,7 @@ from django.views.generic import CreateView, UpdateView, DetailView, \
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 from django.http import HttpResponseRedirect
 from django.forms.models import inlineformset_factory
 
@@ -122,7 +123,15 @@ class DetailView(DetailView):
 
     def get_object(self, *args, **kwargs):
         pk = self.kwargs['pk']
-        entry = get_object_or_404(Entry, pk=pk, disabled=False)
+        entry = get_object_or_404(Entry, pk=pk)
+        if entry.disabled:
+            if (
+                self.request.user.is_authenticated() and \
+                not entry.user == self.request.user
+                ) or \
+                not self.request.user.is_authenticated():
+                    raise Http404('No entry matches the given query.')
+        
         return entry
 
     def get_context_data(self, **kwargs):
