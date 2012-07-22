@@ -29,6 +29,11 @@ class ScreenshotForm(forms.ModelForm):
 
 class VoteForm(forms.ModelForm):
 
+    def save(self, user, entry, *args, **kwargs):
+        self.instance.user = user
+        self.instance.entry = entry
+        return super(VoteForm, self).save(*args, **kwargs)
+
     class Meta:
 
         model = Vote
