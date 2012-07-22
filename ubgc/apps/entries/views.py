@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -73,3 +73,15 @@ class UpdateView(EntryCreateUpdateMixin, UpdateView):
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your entry has been saved")
         return reverse("entries:edit", args=[self.get_object().pk])
+
+
+class DetailView(DetailView):
+
+    context_object_name = 'entry'
+    model = Entry
+    template_name = 'entries/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        entry = context['entry']
+        return context
