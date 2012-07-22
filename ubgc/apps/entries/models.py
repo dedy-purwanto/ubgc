@@ -9,7 +9,7 @@ class Entry(models.Model):
     description = models.TextField()
     embed_code = models.TextField()
     tags = models.TextField()
-    disabled = models.BooeanField(default=False)
+    disabled = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
