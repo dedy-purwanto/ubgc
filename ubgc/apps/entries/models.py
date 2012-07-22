@@ -37,8 +37,6 @@ class Entry(models.Model):
         ordering = ('title',)
 
 
-
-
 class Vote(models.Model):
 
     entry = models.ForeignKey(Entry, related_name='votes')
