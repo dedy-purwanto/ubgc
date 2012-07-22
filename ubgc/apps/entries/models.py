@@ -25,6 +25,7 @@ class Vote(models.Model):
     def __unicode__(self):
         return "%s - %s" % (self.entry.title, self.user)
 
+
 class Screenshot(models.Model):
 
     entry = models.ForeignKey(Entry)
