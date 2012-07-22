@@ -1,8 +1,35 @@
 {% extends "base.html" %}
-{% load twitter %}
 {% block content %}
+<div class="span12">
+    <div class="row">
+        <h1>{{profile.name}}</h1>
+    </div>
+    <div class="row">
+        <div class="span2"><strong>Date Joined</strong></div><div class="span8">{{profile.user.date_joined}}</div>
+    </div>
+    <div class="row">
+        <div class="span2"><strong>Username</strong></div><div class="span8">{{profile.user.username}}</div>
+    </div>
+    <div class="row">
+        <div class="span2"><strong>Name</strong></div><div class="span8">{{profile.user.name}}</div>
+    </div>
+    <div class="row">
+        <div class="span2"><strong>Total Submissions</strong></div><div class="span8"></div>
+    </div>
+    <div class="row">
+        <div class="span2"><strong>Votes Received</strong></div><div class="span8"></div>
+    </div>
+    <div class="row">
+        <div class="span2"><strong>Votes Given</strong></div><div class="span8"></div>
+    </div>
+    <br />
+    <br />
+    <br />
 
-test ajah
-
-
+    <div class="row">
+        <h3>Submissions</h3>
+    </div>
+    
+    
+</div>
 {% endblock %}
