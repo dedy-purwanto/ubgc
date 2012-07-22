@@ -15,7 +15,7 @@
                     </ul>
                     {% if request.user.is_authenticated %}
                     <ul class="nav pull-right">
-                        <li><a class='logo' href="">Submit Entry</a></li>
+                        <li><a class='logo' href="{% url "entries:new" %}">Submit Entry</a></li>
                         <li class="dropdown" id="user_menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu"><strong>{{ request.user }}</strong></a>
                             <ul class="dropdown-menu">
