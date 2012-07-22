@@ -1,0 +1,81 @@
+{% load url from future %}
+<html>
+    <head>
+        <title>UBGC {% block title %} {%endblock %}</title>
+
+        <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner navbar-blue">
+                <div class="container">
+                    <ul class="nav">
+                        <li><a class='logo' href="{% url "home" %}">UBGC</a></li>
+                    </ul>
+                    {% if request.user.is_authenticated %}
+                    <ul class="nav pull-right">
+                        <li class="dropdown" id="user_menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu">
+                                {{ request.user }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Item 1</a></li>
+                                <li class="divider"></li>
+                                <li><a href="">Item 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% block container %} 
+            <div class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {% if message.tags%}alert-{{message.tags}}{%endif%}"> 
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        {% endblock %} 
+
+        <div class='container'>
+            <div class='row'>
+            <hr />
+            <div class='span6'>
+                <a href=''>About</a> | 
+                <a href=''>Privacy</a> | 
+                <a href=''>Terms & Conditions</a>
+            </div>
+            <div class='span6' align='right'>
+                &copy; <a href='http://twitter.com/kecebongsoft'>Dedy Purwanto</a>
+            </div>
+            </div>
+        </div>
+
+
+        <!-- Le javascript ================================================== -->
+        <script src="{{ STATIC_URL }}js/jquery-1.7.1.min.js">
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-transition.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-alert.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-modal.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-dropdown.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-scrollspy.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-tab.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-tooltip.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-popover.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-button.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-collapse.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-carousel.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-typeahead.js"></script>
+        {% block base-js %}{% endblock %}
+    </body>
+</html>
