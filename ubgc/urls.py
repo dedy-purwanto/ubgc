@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
+from django.conf import settings
 
 from home.views import HomeView
 
@@ -12,3 +13,10 @@ urlpatterns = patterns('',
     url(r'^social/', include('socialregistration.urls', namespace = 'socialregistration')),
     url(r'^admin/', include(admin.site.urls)),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    )
