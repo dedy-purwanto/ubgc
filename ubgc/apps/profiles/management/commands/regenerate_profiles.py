@@ -9,8 +9,8 @@ class Command(BaseCommand):
         for user in users:
             profile, created = Profile.objects.get_or_create(user=user)
             if created:
-                self.stdout.write("Profile %s created" % user.username)
+                self.stdout.write("Profile %s created\n" % user.username)
             else:
-                self.stdout.write("Profile %s already exists" % user.username)
+                self.stdout.write("Profile %s already exists\n" % user.username)
 
-        self.stdout.write("Done")
+        self.stdout.write("Done\n")
