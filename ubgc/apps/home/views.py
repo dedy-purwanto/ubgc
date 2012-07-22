@@ -1,4 +1,8 @@
 from django.views.generic import TemplateView
+from django.contrib.auth import logout
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 
 from entries.models import Entry
 
@@ -17,3 +21,13 @@ class HomeView(TemplateView):
         context['recent_entries'] = recent_entries[:15]
 
         return context
+
+
+class LogOutView(TemplateView):
+
+    def render_to_response(self, context, **response_kwargs):
+        messages.success(self.request, "Your have been succesfully logged out")
+        logout(self.request)
+
+        return redirect(reverse("home"))
+
