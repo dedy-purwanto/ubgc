@@ -102,7 +102,7 @@ class VoteCreateView(CreateView):
 
     model = Vote
     form_class = VoteForm
-    template_name = 'entries/vote_form.html'
+    template_name = 'entries/votes_form.html'
 
     def form_valid(self, form):
         entry = Entry.objects.get(pk=self.kwargs['pk'])
