@@ -19,7 +19,7 @@
                         <li class="dropdown" id="user_menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu"><strong>{{ request.user }}</strong></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">My Profile</a></li>
+                                <li><a href="{% url "profiles:detail" request.user.pk %}">My Profile</a></li>
                                 <li><a href="">My Submissions</a></li>
                                 <li><a href="">My Votes</a></li>
                                 <li class="divider"></li>
