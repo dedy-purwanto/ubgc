@@ -23,7 +23,7 @@
                     <td>{{entry.votes.all.count}}</td>
                     <td>
                         <a href="{% url "entries:edit" entry.pk %}">Edit</a> | 
-                        <a href="{% url "entries:disable" entry.pk %}">{% if entry.disabled %}Enable{% else %}Disable{% endif %}</a>
+                        <a href="{% url "entries:disable" entry.pk %}">{% if entry.disabled %}Enable{% else %}Disable{% endif %}</a> | 
                         <a href="{% url "entries:delete" entry.pk %}">Remove</a>
                     </td>
                 </tr>
