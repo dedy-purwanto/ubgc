@@ -76,6 +76,18 @@ class EntryUpdateView(EntryCreateUpdateMixin, UpdateView):
         return reverse("entries:edit", args=[self.get_object().pk])
 
 
+class EntryDeleteView(DeleteView):
+
+    template_name = 'entries/delete.html'
+
+    def get_object(self, *args, **kwargs):
+        return Entry.objects.get(pk=self.kwargs['pk'], user=self.request.user)
+
+    def get_success_url(self, *args, **kwargs):
+        messages.success(self.request, "Your entry has been removed")
+        return reverse("profiles:submissions")
+
+
 class DetailView(DetailView):
 
     context_object_name = 'entry'
