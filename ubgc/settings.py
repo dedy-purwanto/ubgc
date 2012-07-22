@@ -80,6 +80,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+
+    'socialregistration',
+    'socialregistration.contrib.twitter',
+    'south',
+    'widget_tweaks',
 )
 LOGGING = {
     'version': 1,
