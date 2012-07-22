@@ -18,14 +18,11 @@ class ProfileForm(forms.ModelForm):
             pass
 
     def save(self, *args, **kwargs):
-        email = self.cleaned_data.get('email', None)
-        name = self.cleaned_data.get('name', None)
+        email = self.cleaned_data.get('email', '')
+        name = self.cleaned_data.get('name', '')
 
-        if name:
-            self.instance.user.first_name = name
-
-        if email:
-            self.instance.user.email = email
+        self.instance.user.first_name = name
+        self.instance.user.email = email
 
         self.instance.user.save()
 
