@@ -15,17 +15,33 @@ class EntryCreateUpdateMixin(object):
     ScreenshotFormSet = inlineformset_factory(Entry, Screenshot,
             can_delete=True, extra=3, form=ScreenshotForm)
 
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+
+        pk = self.kwargs.get('pk', None)
+
+        if pk is not None:
+            form = form_class(self.request.POST or None, 
+                    instance=self.get_object())
+        else:
+            form = form_class(self.request.POST or None)
+
+        screenshot_formset = self.ScreenshotFormSet(self.request.POST or None, 
+                self.request.FILES or None)
+        if form.is_valid() and screenshot_formset.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def form_valid(self, form):
         self.object = form.save(self.request.user)
         return HttpResponseRedirect(self.get_success_url())
 
-
     def get_context_data(self, **kwargs):
         context = super(EntryCreateUpdateMixin, self).get_context_data(**kwargs)
 
-        screenshot_formset = self.ScreenshotFormSet(self.request.POST or None)
+        screenshot_formset = self.ScreenshotFormSet(self.request.POST or None, self.request.FILES or None)
         context['screenshot_formset'] = screenshot_formset
-
         
         return context
 
