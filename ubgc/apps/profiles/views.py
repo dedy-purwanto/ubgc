@@ -1,6 +1,8 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
+from django.core.urlsresolvers import reverse
 
 from .models import Profile
+from .forms import ProfileForm
 
 class DetailView(DetailView):
 
@@ -12,3 +14,11 @@ class DetailView(DetailView):
         context = super(DetailView, self).get_context_data(**kwargs)
         profile = context['profile']
         return context
+
+
+class UpdateView(UpdateView):
+
+    model = Profile
+    form_class = ProfileForm
+    success_url = reverse("profiles:update")
+    template_name = 'profiles/form.html'
