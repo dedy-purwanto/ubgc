@@ -4,7 +4,7 @@
 {% block content %}
 <div class="span12">
     Are you sure you want to remove your vote for 
-    <a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a>?
+    <a href='{% url "entries:play" object.entry.pk object.entry.slug %}'>{{object.entry.title}}</a>?
 
     <form method='post'>
         <input type="submit" class="btn" value="Yes, remove it"> | 
