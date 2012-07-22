@@ -18,7 +18,7 @@
                         <li><a href="{% url "entries:new" %}">Submit Entry</a></li>
                         <li><a href="{% url "profiles:detail" request.user.pk %}">My Profile</a></li>
                         <li><a href="{% url "profiles:submissions" %}">My Submissions</a></li>
-                        <li><a href="">My Votes</a></li>
+                        <li><a href="{% url "profiles:votes" %}">My Votes</a></li>
                         <li class="dropdown" id="user_menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu">
                                 {% if request.user.profile.name %}
