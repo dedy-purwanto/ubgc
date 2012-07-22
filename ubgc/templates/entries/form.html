@@ -47,6 +47,7 @@
 
             {% endfor %}
             {% csrf_token %}
+            {{ screenshot_formset.management_form }}
         </fieldset>
         <input type="submit" class="btn btn-primary pull-right" value="Save">
     </form>
