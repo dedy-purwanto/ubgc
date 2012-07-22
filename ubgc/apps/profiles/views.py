@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, TemplateView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
@@ -6,6 +6,11 @@ from entries.models import Vote
 
 from .models import Profile
 from .forms import ProfileForm
+
+class SubmissionView(TemplateView):
+
+    template_name = 'profiles/submissions.html'
+
 
 class DetailView(DetailView):
 
