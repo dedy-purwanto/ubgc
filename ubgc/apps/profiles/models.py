@@ -6,7 +6,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, related_name='profile')
     bio = models.TextField(blank=True, null=True)
-    photo = ThumbnailerImageField(upload_to='profile/photo/%Y/%m/%d', 
+    photo = ThumbnailerImageField(upload_to='profiles/photo/%Y/%m/%d', 
             blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
