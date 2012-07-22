@@ -22,7 +22,7 @@
                                 <li><a href="{% url "profiles:update" %}">Edit Profile</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{% url "profiles:detail" request.user.pk %}">My Profile</a></li>
-                                <li><a href="">My Submissions</a></li>
+                                <li><a href="{% url "profiles:submissions" %}">My Submissions</a></li>
                                 <li><a href="">My Votes</a></li>
                                 <li class="divider"></li>
                                 <li><a href="">Log Out</a></li>
