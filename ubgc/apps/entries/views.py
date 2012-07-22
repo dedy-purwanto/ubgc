@@ -49,6 +49,7 @@ class EntryCreateUpdateMixin(object):
         if screenshot_formset.is_valid():
             pass
         context['screenshot_formset'] = screenshot_formset
+        context['object'] = self.get_object()
 
         return context
 
