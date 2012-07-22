@@ -84,6 +84,16 @@ class DetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         entry = context['entry']
+
+        can_vote = False
+        if self.request.is_authenticated:
+            try:
+                Vote.objects.get(entry=entry, user=self.request.user)
+            except Vote.DoesNotExist:
+                can_vote = True
+
+        context['can_vote'] = can_vote
+
         return context
 
 
