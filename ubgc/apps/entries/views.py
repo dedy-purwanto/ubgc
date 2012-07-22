@@ -109,5 +109,6 @@ class VoteCreateView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self, *args, **kwargs):
+        entry = self.object.entry
         messages.success(self.request, "Your vote has been saved")
-        return reverse("entries:play", args=[self.get_object().entry.pk])
+        return reverse("entries:play", args=[entry.pk, entry.slug])
