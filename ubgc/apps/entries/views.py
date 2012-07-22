@@ -135,6 +135,9 @@ class VoteDeleteView(DeleteView):
 
     template_name = 'entries/votes_delete.html'
 
+    def get_object(self, *args, **kwargs):
+        return Vote.objects.get(pk=self.kwargs['pk'], user=self.request.user)
+
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your vote has been removed")
         return reverse("entries:votes")
