@@ -17,6 +17,10 @@ class Entry(models.Model):
     @property
     def slug(self):
         return slugify(self.title)
+    
+    @property
+    def tag_list(self):
+        return self.tags.split(",")
 
     def __unicode__(self):
         return self.title
