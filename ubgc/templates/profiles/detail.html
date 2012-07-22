@@ -23,6 +23,15 @@
     <div class="row">
         <div class="span2"><strong>Votes Given</strong></div><div class="span8">{{votes_given.all.count}}</div>
     </div>
+    {% if profile.bio %}
+    <br />
+    <br />
+    <div class="row">
+        <blockquote>
+            <i>{{profile.bio}}</i>
+        </blockquote>
+    </div>
+    {% endif %}
     <br />
     <br />
     <br />
