@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -112,3 +112,19 @@ class VoteCreateView(CreateView):
         entry = self.object.entry
         messages.success(self.request, "Your vote has been saved")
         return reverse("entries:play", args=[entry.pk, entry.slug])
+
+
+class VoteListView(TemplateView):
+
+    template_name = 'profiles/votes.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(VoteListView, self).get_context_data(**kwargs)
+
+        given = Vote.objects.filter(user=self.request.user)
+        received = Vote.objects.filter(entry__user=self.request.user)
+
+        context['votes_given'] = given
+        context['votes_received'] = received
+
+        return context
