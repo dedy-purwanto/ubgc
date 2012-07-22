@@ -18,7 +18,10 @@
     <strong>Description:</strong><br />
     {{entry.description}}<br /><br />
     Date submitted: {{entry.date_added}}<br />
-    Tags: {{entry.tags}}
+    Tags: 
+    {% for tag in entry.tag_list %}
+    <span class="badge">{{tag.strip}}</span>
+    {% endfor %}
     </p>
     
 
