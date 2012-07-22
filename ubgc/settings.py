@@ -1,4 +1,3 @@
-# Django settings for ubgc project.
 import os
 import sys
 
