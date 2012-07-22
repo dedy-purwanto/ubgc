@@ -4,7 +4,7 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
 
     name = forms.CharField(max_length=255, required=False)
-    email_address = forms.EmailField(required=False)
+    email = forms.EmailField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
