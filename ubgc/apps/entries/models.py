@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from easy_thumbnails.fields import ThumbnailerImageField
 
 class Entry(models.Model):
 
@@ -22,3 +23,9 @@ class Vote(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.entry.title, self.user)
+
+class Screenshot(models.Model):
+
+    entry = models.ForeignKey(Entry)
+    photo = ThumbnailerImageField(upload_to='institution/photo/%Y/%m/%d')
+    date_added = models.DateTimeField(auto_now_add=True)
