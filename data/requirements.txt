@@ -1,0 +1,11 @@
+Django==1.4
+South==0.7.5
+argparse==1.2.1
+django-model-utils==1.1.0
+django-socialregistration==0.5.5
+httplib2==0.7.4
+mock==1.0b1
+oauth2==1.5.211
+psycopg2==2.4.5
+python-openid==2.2.5
+wsgiref==0.1.2
