@@ -20,7 +20,13 @@
                         <li><a href="{% url "profiles:submissions" %}">My Submissions</a></li>
                         <li><a href="">My Votes</a></li>
                         <li class="dropdown" id="user_menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu"><strong>{{ request.user }}</strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu">
+                                {% if request.user.profile.name %}
+                                    <strong>{{ request.user.profile.name }}</strong>
+                                {% else %}
+                                    <strong>{{ request.user.username }}</strong>
+                                {% endif %}
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url "profiles:update" %}">Edit Profile</a></li>
                                 <li class="divider"></li>
