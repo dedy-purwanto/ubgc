@@ -2,5 +2,19 @@
 {% load twitter %}
 {% block content %}
 
+<h1>UBGC</h1><hr />
+<span class="span6">
+    <h4>Top Entries:</h4>
+    {% for entry in top_entries %}
+        {% include "home/entry_item.html" with entry=entry %}
+    {% endfor %}
+</span>
+<span class="span6">
+    <h4>Recent Entries:</h4>
+    {% for entry in recent_entries %}
+        {% include "home/entry_item.html" with entry=entry %}
+    {% endfor %}
+</span>
+
 
 {% endblock %}
