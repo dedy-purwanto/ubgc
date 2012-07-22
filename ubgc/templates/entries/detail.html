@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load thumbnail%}
 {% block content %}
 <div class="span8">
     <h1>{{entry.title}}</h1>
@@ -12,7 +13,9 @@
     </div>
 
     <hr />
-    [Thumbnails goes here]
+    {% for photo in entry.photos.all %}
+        <img src="{% thumbnail photo.photo 100x100 crop %}" />
+    {% endfor %}
     <hr />
     <p>
     <strong>Description:</strong><br />
