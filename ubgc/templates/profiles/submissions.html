@@ -15,15 +15,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for entry in profile.user.entries.all %}
+                {% for entry in request.user.entries.all %}
                 <tr>
                     <td>{{entry.title}}</td>
                     <td>{{entry.date_added}}</td>
                     <td>{{entry.date_modified}}</td>
                     <td>{{entry.votes.all.count}}</td>
                     <td>
-                        <a href="{% url "entries:edit" entry.pk %}">Edit</a>
-                        <a href="">Disable</a>
+                        <a href="{% url "entries:edit" entry.pk %}">Edit</a> | 
+                        <a href="">Disable</a> | 
                         <a href="">Remove</a>
                     </td>
                 </tr>
