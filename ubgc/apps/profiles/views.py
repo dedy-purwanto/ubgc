@@ -12,12 +12,12 @@ class SubmissionView(TemplateView):
     template_name = 'profiles/submissions.html'
 
 
-class VotesView(TemplateView):
+class VoteView(TemplateView):
 
     template_name = 'profiles/votes.html'
 
     def get_context_data(self, **kwargs):
-        context = super(DetailView, self).get_context_data(**kwargs)
+        context = super(VoteView, self).get_context_data(**kwargs)
 
         given = Vote.objects.filter(user=self.request.user)
         received = Vote.objects.filter(entry__user=self.request.user)
