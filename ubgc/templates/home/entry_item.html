@@ -1,4 +1,15 @@
 {% load url from future %}
 {% load thumbnail %}
-
-<strong><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></strong>
+<div class="row">
+    <div class="span2">
+        <a href='{% url "entries:play" entry.pk entry.slug %}'><img src="{% thumbnail photo.photo 140x100 crop %}" /></a>
+        {% for tag in entry.tag_list %}
+            <span class="badge">{{tag.strip}}</span>
+        {% endfor %}
+    </div>
+    <div class="span4">
+        <strong><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></strong><br />
+        By <a href="{% url "profiles:detail" entry.user.pk %}">{{entry.user.profile.name}}</a><br />
+        {{entry.description|truncatewords:"25"}}
+    </div>
+</div>
