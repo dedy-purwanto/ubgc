@@ -7,29 +7,31 @@
     <form method="POST">
         <fieldset>
             <div class="control-group">
-                <label class="control-label" for="id_{{form.name.name}}">Name</label>
+                <label class="control-label{% if form.name.errors %} error {% endif %}" for="id_{{form.name.name}}">Name</label>
                 <div class="controls">
                     {{form.name}}
+                    <span class="help-inline">{{ form.name.errors.0}}</span>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="id_{{form.email.name}}">Email</label>
+                <label class="control-label{% if form.email.errors %} error {% endif %}" for="id_{{form.email.name}}">Email</label>
                 <div class="controls">
                     {{form.email}}
-                    <span class="help-inline">Your email will not be shown to anyone</span>
+                    <span class="help-inline">{{ form.email.errors.0}} Your email will not be shown to anyone</span>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="id_{{form.bio.name}}">Bio</label>
+                <label class="control-label{% if form.bio.errors %} error {% endif %}" for="id_{{form.bio.name}}">Bio</label>
                 <div class="controls">
                     {{form.bio}}
-                    <span class="help-inline">Your short bio, including websites and other stuff</span>
+                    <span class="help-inline">{{form.bio.errors.0}} Your short bio, including websites and other stuff</span>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="id_{{form.photo.name}}">Avatar</label>
+                <label class="control-label{% if form.photo.errors %} error {% endif %}" for="id_{{form.photo.name}}">Avatar</label>
                 <div class="controls">
                     {{form.photo}}
+                    <span class="help-inline">{{ form.photo.errors.0}}</span>
                 </div>
             </div>
             {% csrf_token %}
