@@ -51,7 +51,7 @@ class EntryCreateUpdateMixin(object):
         return context
 
 
-class CreateView(EntryCreateUpdateMixin, CreateView):
+class EntryCreateView(EntryCreateUpdateMixin, CreateView):
 
     def get_object(self, *args, **kwargs):
         if self.object is None:
@@ -64,7 +64,7 @@ class CreateView(EntryCreateUpdateMixin, CreateView):
         return reverse("profiles:detail", args=[self.request.user.pk])
 
 
-class UpdateView(EntryCreateUpdateMixin, UpdateView):
+class EntryUpdateView(EntryCreateUpdateMixin, UpdateView):
 
     def get_object(self, *args, **kwargs):
         entry = get_object_or_404(Entry, pk=self.kwargs['pk'], user=self.request.user)
