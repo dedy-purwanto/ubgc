@@ -7,3 +7,9 @@ input[type="text"]{
     height:30px;
 
 }
+
+textarea{
+    height:50px;
+    width:400px;
+
+}
