@@ -108,3 +108,8 @@ LOGGING = {
 
 SOUTH_TESTS_MIGRATE = False
 SKIP_SOUTH_TESTS = True
+
+try:
+    from settings_local import *
+except ImportError:
+    pass
