@@ -2,12 +2,16 @@
 {% load url from future %}
 {% load thumbnail%}
 {% block content %}
+<h1>Remove Vote</h1><hr />
 <div class="span12">
     Are you sure you want to remove your vote for 
-    <a href='{% url "entries:play" object.entry.pk object.entry.slug %}'>{{object.entry.title}}</a>?
+    <strong><a href='{% url "entries:play" object.entry.pk object.entry.slug %}'>{{object.entry.title}}</a></strong>?
+    <br />
+    <br />
 
     <form method='post'>
-        <input type="submit" class="btn" value="Yes, remove it"> | 
+        <input type="submit" class="btn" value="Yes, remove it"> 
+        {% csrf_token %}
         <a href="{% url "entries:votes" %}" class="btn btn-primary">Cancel</a>
     </form>
     
