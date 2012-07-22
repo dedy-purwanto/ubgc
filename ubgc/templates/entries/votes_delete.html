@@ -3,69 +3,13 @@
 {% load thumbnail%}
 {% block content %}
 <div class="span12">
-    <div class="row">
-        <h1>{{profile.name}}</h1><hr />
-    </div>
-    <div class="row">
-        <div class="span2">
-            <img src="{% thumbnail profile.photo 100x100 crop %}" />
+    Are you sure you want to remove your vote for 
+    <a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a>?
 
-        </div>
-        <div class="span8">
-            <div class="row">
-                <div class="span2"><strong>Date Joined</strong></div><div class="span6">{{profile.user.date_joined}}</div>
-            </div>
-            <div class="row">
-                <div class="span2"><strong>Username</strong></div><div class="span6">{{profile.user.username}}</div>
-            </div>
-            <div class="row">
-                <div class="span2"><strong>Name</strong></div><div class="span6">{{profile.user.first_name}}</div>
-            </div>
-            <div class="row">
-                <div class="span2"><strong>Total Submissions</strong></div><div class="span6">{{profile.user.entries.all.count}}</div>
-            </div>
-            <div class="row">
-                <div class="span2"><strong>Votes Received</strong></div><div class="span6">{{votes_received.all.count}}</div>
-            </div>
-            <div class="row">
-                <div class="span2"><strong>Votes Given</strong></div><div class="span6">{{votes_given.all.count}}</div>
-            </div>
-        </div>
-    </div>
-    {% if profile.bio %}
-    <br />
-    <br />
-    <div class="row">
-        <blockquote>
-            <i>{{profile.bio}}</i>
-        </blockquote>
-    </div>
-    {% endif %}
-    <br />
-    <br />
-    <br />
-
-    <div class="row">
-        <h3>Submissions</h3>
-        <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th>Entry title</th>
-                    <th>Date submitted</th>
-                    <th>Votes</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for entry in profile.user.entries.all %}
-                <tr>
-                    <td><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></td>
-                    <td>{{entry.date_added}}</td>
-                    <td>{{entry.votes.all.count}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <form method='post'>
+        <input type="submit" class="btn" value="Yes, remove it"> | 
+        <a href="{% url "entries:votes" %}" class="btn btn-primary">Cancel</a>
+    </form>
     
 </div>
 {% endblock %}
