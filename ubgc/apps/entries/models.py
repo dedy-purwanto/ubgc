@@ -13,6 +13,7 @@ class Entry(models.Model):
     disabled = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+    num_votes = models.IntegerField(default=0)
 
     @property
     def slug(self):
