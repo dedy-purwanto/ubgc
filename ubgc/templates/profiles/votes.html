@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% load url from future %}
 {% block content %}
+<h1>Your Votes</h1><hr />
 <div class="span12">
     <div class="row">
-        <h1>Given votes from you</h1><hr />
+        <h3>Received votes for your entries</h3>
         <table class="table table-condensed">
             <thead>
                 <tr>
                     <th>Entry title</th>
-                    <th>Date voted</th>
+                    <th>Date received</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for vote in votes_given %}
+                {% for vote in votes_received %}
                 <tr>
                     <td><a href='{% url "entries:play" vote.entry.pk vote.entry.slug %}'>{{vote.entry.title}}</a></td>
                     <td>{{vote.date_added}}</td>
@@ -29,17 +30,17 @@
 <hr />
 <div class="span12">
     <div class="row">
-        <h1>Received votes for your entries</h1><hr />
+        <h3>Given votes from you</h3>
         <table class="table table-condensed">
             <thead>
                 <tr>
                     <th>Entry title</th>
-                    <th>Date received</th>
+                    <th>Date voted</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for vote in votes_received %}
+                {% for vote in votes_given %}
                 <tr>
                     <td><a href='{% url "entries:play" vote.entry.pk vote.entry.slug %}'>{{vote.entry.title}}</a></td>
                     <td>{{vote.date_added}}</td>
