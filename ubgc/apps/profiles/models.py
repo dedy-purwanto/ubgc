@@ -6,7 +6,8 @@ class Profile(models.Model):
 
     user = models.ForeignKey(User)
     bio = models.TextField(blank=True, null=True)
-    photo = ThumbnailerImageField(upload_to='institution/photo/%Y/%m/%d')
+    photo = ThumbnailerImageField(upload_to='institution/photo/%Y/%m/%d', 
+            blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
