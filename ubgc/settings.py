@@ -60,6 +60,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'socialregistration.contrib.twitter.auth.TwitterAuth',
+)
+
 ROOT_URLCONF = 'ubgc.urls'
 
 TEMPLATE_DIRS = (
