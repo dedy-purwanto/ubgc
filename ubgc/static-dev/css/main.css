@@ -24,3 +24,21 @@ td, th{
     padding-bottom:30px;
 
 }
+
+.top_entries_box, .recent_entries_box{
+    padding-left:10px;
+    margin-right:10px;
+    padding-top:10px;
+    margin-left:-5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.top_entries_box{
+    background-color:#F0F5FF;
+
+}
+.recent_entries_box{
+
+}
