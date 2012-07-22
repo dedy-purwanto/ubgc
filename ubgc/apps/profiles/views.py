@@ -2,6 +2,8 @@ from django.views.generic import DetailView, UpdateView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
+from entries.models import Vote
+
 from .models import Profile
 from .forms import ProfileForm
 
@@ -14,6 +16,8 @@ class DetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         profile = context['profile']
+        context['votes_given'] = Vote.objects.filter(user=profile.user)
+        context['votes_received'] = Vote.objects.filter(entry__user=profile.user)
         return context
 
 
