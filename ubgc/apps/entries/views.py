@@ -116,7 +116,7 @@ class VoteCreateView(CreateView):
 
 class VoteListView(TemplateView):
 
-    template_name = 'profiles/votes.html'
+    template_name = 'entries/votes_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(VoteListView, self).get_context_data(**kwargs)
