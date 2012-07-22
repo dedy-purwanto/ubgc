@@ -28,6 +28,29 @@
 
     <div class="row">
         <h3>Submissions</h3>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Entry title</th>
+                    <th>Date submitted</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in profile.user.entries.all %}
+                <tr>
+                    <td>{{entry.title}}</td>
+                    <td>{{entry.date_added}}</td>
+                    <td>{{entry.votes.all.count}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+
+
+        </table>
+
     </div>
     
     
