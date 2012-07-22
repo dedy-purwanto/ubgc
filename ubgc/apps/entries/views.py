@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.forms.models import inlineformset_factory
 
-from .models import Entry, Screenshot
-from .forms import EntryForm, ScreenshotForm
+from .models import Entry, Screenshot, Vote
+from .forms import EntryForm, ScreenshotForm, VoteForm
 
 class EntryCreateUpdateMixin(object):
 
@@ -85,3 +85,14 @@ class DetailView(DetailView):
         context = super(DetailView, self).get_context_data(**kwargs)
         entry = context['entry']
         return context
+
+
+class VoteCreateView(CreateView):
+
+    model = Vote
+    form_class = VoteForm
+    template_name = 'entries/vote_form.html'
+
+    def get_success_url(self, *args, **kwargs):
+        messages.success(self.request, "Your vote has been saved")
+        return reverse("entries:play", args=[self.get_object().entry.pk])
