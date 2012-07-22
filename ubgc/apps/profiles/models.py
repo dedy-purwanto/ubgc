@@ -12,3 +12,10 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return self.user
+
+    @property
+    def name(self):
+        if self.user.first_name:
+            return self.user.first_name
+        else:
+            return self.user.username
