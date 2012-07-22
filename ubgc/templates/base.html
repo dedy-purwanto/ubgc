@@ -15,15 +15,14 @@
                     </ul>
                     {% if request.user.is_authenticated %}
                     <ul class="nav pull-right">
-                        <li><a class='logo' href="{% url "entries:new" %}">Submit Entry</a></li>
+                        <li><a href="{% url "entries:new" %}">Submit Entry</a></li>
+                        <li><a href="{% url "profiles:detail" request.user.pk %}">My Profile</a></li>
+                        <li><a href="{% url "profiles:submissions" %}">My Submissions</a></li>
+                        <li><a href="">My Votes</a></li>
                         <li class="dropdown" id="user_menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#user_menu"><strong>{{ request.user }}</strong></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url "profiles:update" %}">Edit Profile</a></li>
-                                <li class="divider"></li>
-                                <li><a href="{% url "profiles:detail" request.user.pk %}">My Profile</a></li>
-                                <li><a href="{% url "profiles:submissions" %}">My Submissions</a></li>
-                                <li><a href="">My Votes</a></li>
                                 <li class="divider"></li>
                                 <li><a href="">Log Out</a></li>
                             </ul>
