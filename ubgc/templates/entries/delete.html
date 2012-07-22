@@ -2,7 +2,7 @@
 {% load url from future %}
 {% load thumbnail%}
 {% block content %}
-<h1>Remove Vote</h1><hr />
+<h1>Remove Entry</h1><hr />
 <div class="span12">
     Are you sure you want to remove your entry 
     <strong><a href='{% url "entries:play" object.pk object.slug %}'>{{object.title}}</a></strong>?<br />
