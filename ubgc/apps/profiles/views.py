@@ -20,5 +20,7 @@ class UpdateView(UpdateView):
 
     model = Profile
     form_class = ProfileForm
-    success_url = reverse("profiles:update")
     template_name = 'profiles/form.html'
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("profiles:update")
