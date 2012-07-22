@@ -94,7 +94,7 @@ class EntryDisableView(TemplateView):
 
     def post(self, *args, **kwargs):
         entry = self.get_object()
-        entry.disabled = True if entry.disabled else True
+        entry.disabled = False if entry.disabled else True
         entry.save()
         return HttpResponseRedirect(self.get_success_url())
 
@@ -119,6 +119,11 @@ class DetailView(DetailView):
     context_object_name = 'entry'
     model = Entry
     template_name = 'entries/detail.html'
+
+    def get_object(self, *args, **kwargs):
+        pk = self.kwargs['pk']
+        entry = get_object_or_404(Entry, pk=pk, disabled=False)
+        return entry
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
