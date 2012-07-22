@@ -1,4 +1,5 @@
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
+from django.views.generic import CreateView, UpdateView, DetailView, \
+        TemplateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -128,3 +129,12 @@ class VoteListView(TemplateView):
         context['votes_received'] = received
 
         return context
+
+
+class VoteDeleteView(DeleteView):
+
+    template_name = 'entries/votes_delete.html'
+
+    def get_success_url(self, *args, **kwargs):
+        messages.success(self.request, "Your vote has been removed")
+        return reverse("entries:votes")
