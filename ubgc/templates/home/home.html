@@ -3,13 +3,13 @@
 {% block content %}
 
 <h1>UBGC</h1><hr />
-<span class="span6">
+<span class="span6 top_entries_box">
     <h4>Top Entries:</h4><br />
     {% for entry in top_entries %}
         {% include "home/entry_item.html" with entry=entry photo=entry.photos.all.0 %}
     {% endfor %}
 </span>
-<span class="span6">
+<span class="span6 recent_entries_box">
     <h4>Recent Entries:</h4><br />
     {% for entry in recent_entries %}
         {% include "home/entry_item.html" with entry=entry photo=entry.photos.all.0%}
