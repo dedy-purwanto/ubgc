@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'south',
     'widget_tweaks',
 
+    'entries',
     'home',
 )
 LOGGING = {
