@@ -6,13 +6,13 @@
 <span class="span6">
     <h4>Top Entries:</h4>
     {% for entry in top_entries %}
-        {% include "home/entry_item.html" with entry=entry %}
+        {% include "home/entry_item.html" with entry=entry photo=entry.photos.all.0 %}
     {% endfor %}
 </span>
 <span class="span6">
     <h4>Recent Entries:</h4>
     {% for entry in recent_entries %}
-        {% include "home/entry_item.html" with entry=entry %}
+        {% include "home/entry_item.html" with entry=entry photo=entry.photos.all.0%}
     {% endfor %}
 </span>
 
