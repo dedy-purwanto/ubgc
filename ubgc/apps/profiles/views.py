@@ -1,5 +1,6 @@
 from django.views.generic import DetailView, UpdateView
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 
 from .models import Profile
 from .forms import ProfileForm
@@ -26,4 +27,5 @@ class UpdateView(UpdateView):
         return self.request.user.profile
 
     def get_success_url(self, *args, **kwargs):
+        messages.success(self.request, "Your profile has been saved")
         return reverse("profiles:update")
