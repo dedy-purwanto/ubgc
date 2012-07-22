@@ -14,7 +14,7 @@
 
     <hr />
     {% for photo in entry.photos.all %}
-        <img src="{% thumbnail photo.photo 100x100 crop %}" />
+    <a href='{{photo.photo.url}}' target='_blank'><img src="{% thumbnail photo.photo 100x100 crop %}" /></a>
     {% endfor %}
     <hr />
     <p>
