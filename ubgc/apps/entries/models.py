@@ -32,6 +32,18 @@ class Vote(models.Model):
     user = models.ForeignKey(User, related_name='votes')
     date_added = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            try:
+                vote = Vote.objects.get(entry=self.entry, user=self.user)
+                if vote:
+                    raise Exception("Another vote object with this data already exists")
+            except Vote.DoesNotExist:
+                pass
+
+        return super(Vote, self).save(*args, **kwargs)
+
+
     def __unicode__(self):
         return "%s - %s" % (self.entry.title, self.user)
 
