@@ -43,7 +43,6 @@ class Vote(models.Model):
 
         return super(Vote, self).save(*args, **kwargs)
 
-
     def __unicode__(self):
         return "%s - %s" % (self.entry.title, self.user)
 
