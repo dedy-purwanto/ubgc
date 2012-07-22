@@ -4,6 +4,7 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 class Entry(models.Model):
 
+    user = models.ForeignKey(User, related_name='entries')
     title = models.CharField(max_length=255)
     description = models.TextField()
     embed_code = models.TextField()
