@@ -14,6 +14,7 @@ class ProfileForm(forms.ModelForm):
             if self.instance.pk:
                 self.fields['username'].initial = self.instance.user.username
                 self.fields['name'].initial = self.instance.user.first_name
+                self.fields['email'].initial = self.instance.user.email
         
         except Profile.DoesNotExist:
             pass
