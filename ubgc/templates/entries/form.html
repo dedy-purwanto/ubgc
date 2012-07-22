@@ -35,6 +35,17 @@
                     <span class="help-inline">{{ form.tags.errors.0}} Tags are comma separated keyword about your entry's genres, platform and other stuff</span>
                 </div>
             </div>
+            {% for form in screenshot_formset %}
+                <div class="control-group{% if form.photo.errors %} error {% endif %}" for="id_{{form.photo.name}}">
+                    <label class="control-label">Screenshot {{forloop.counter0|add:1}}</label>
+                    <div class="controls">
+                        {{form.photo}}<br />
+                        {{form.DELETE}} Remove
+                        <span class="help-inline">{{ form.photo.errors.0}}</span>
+                    </div>
+                </div>
+
+            {% endfor %}
             {% csrf_token %}
         </fieldset>
         <input type="submit" class="btn btn-primary pull-right" value="Save">
