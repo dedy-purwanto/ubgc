@@ -3,9 +3,13 @@
 <div class="row">
     <div class="span2">
         <a href='{% url "entries:play" entry.pk entry.slug %}'><img src="{% thumbnail photo.photo 140x100 crop %}" /></a>
-        {% for tag in entry.tag_list %}
-            <span class="badge">{{tag.strip}}</span>
-        {% endfor %}
+        <h3 class='pull-right'>
+            {% if entry.num_votes > 0 %}
+                {{entry.num_votes}} votes
+            {% else %}
+                No votes
+            {% endif %}
+        </h3>
     </div>
     <div class="span4">
         <strong><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></strong><br />
@@ -13,3 +17,5 @@
         {{entry.description|truncatewords:"25"}}
     </div>
 </div>
+<br />
+<br />
