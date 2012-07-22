@@ -17,7 +17,7 @@
     <br />
 
     <form method='post'>
-        <input type="submit" class="btn" value="Yes, {% if object.disabled %} enable {% else %} disabled {% endif %} it"> 
+        <input type="submit" class="btn" value="Yes, {% if object.disabled %}enable{% else %}disabled{% endif %} it"> 
         {% csrf_token %}
         <a href="{% url "profiles:submissions" %}" class="btn btn-primary">Cancel</a>
     </form>
