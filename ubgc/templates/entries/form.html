@@ -4,8 +4,36 @@
     <div class="row">
         <h1>{% if not entry %}Submit a new{% else %}Update{% endif %} entry</h1>
     </div>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
+            <div class="control-group{% if form.title.errors %} error {% endif %}" for="id_{{form.title.name}}">
+                <label class="control-label">Entry Title</label>
+                <div class="controls">
+                    {{form.title}}
+                    <span class="help-inline">{{ form.title.errors.0}}</span>
+                </div>
+            </div>
+            <div class="control-group{% if form.description.errors %} error {% endif %}" for="id_{{form.description.name}}">
+                <label class="control-label">Description</label>
+                <div class="controls">
+                    {{form.description}}
+                    <span class="help-inline">{{ form.description.errors.0}}</span>
+                </div>
+            </div>
+            <div class="control-group{% if form.embed_code.errors %} error {% endif %}" for="id_{{form.embed_code.name}}">
+                <label class="control-label">Embed Code</label>
+                <div class="controls">
+                    {{form.embed_code}}
+                    <span class="help-inline">{{ form.embed_code.errors.0}}</span>
+                </div>
+            </div>
+            <div class="control-group{% if form.tags.errors %} error {% endif %}" for="id_{{form.tags.name}}">
+                <label class="control-label">Tags</label>
+                <div class="controls">
+                    {{form.tags}}
+                    <span class="help-inline">{{ form.tags.errors.0}} Tags are comma separated keyword about your entry's genres, platform and other stuff</span>
+                </div>
+            </div>
             {% csrf_token %}
         </fieldset>
         <input type="submit" class="btn btn-primary" value="Save">
