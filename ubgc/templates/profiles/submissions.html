@@ -24,7 +24,7 @@
                     <td>
                         <a href="{% url "entries:edit" entry.pk %}">Edit</a> | 
                         <a href="">Disable</a> | 
-                        <a href="">Remove</a>
+                        <a href="{% url "entries:delete" entry.pk %}">Remove</a>
                     </td>
                 </tr>
                 {% endfor %}
