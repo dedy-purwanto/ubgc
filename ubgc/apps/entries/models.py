@@ -17,8 +17,10 @@ class Entry(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     num_votes = models.IntegerField(default=0)
 
-    def calculate_votes(self):
-        self.num_votes = self.votes.all.count()
+    def calculate_votes(self, is_delete=False):
+        self.num_votes = self.votes.all().count()
+        if is_delete:
+            self.num_votes -= 1
         self.save()
 
     @property
@@ -65,8 +67,7 @@ def vote_post_save(sender, instance, created, **kwargs):
 
 @receiver(pre_delete, sender=Vote)
 def vote_pre_delete(sender, instance, **kwargs):
-    instance.entry.calculate_votes()
-    
+    instance.entry.calculate_votes(is_delete=True)
 
 
 class Screenshot(models.Model):
