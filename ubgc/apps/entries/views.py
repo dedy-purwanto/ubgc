@@ -45,4 +45,4 @@ class UpdateView(EntryCreateUpdateMixin, UpdateView):
 
     def get_success_url(self, *args, **kwargs):
         messages.success(self.request, "Your entry has been saved")
-        return reverse("entires:edit", args=[self.get_object().pk])
+        return reverse("entries:edit", args=[self.get_object().pk])
