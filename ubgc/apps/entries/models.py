@@ -18,8 +18,8 @@ class Entry(models.Model):
 
 class Vote(models.Model):
 
-    entry = models.ForeignKey(Entry)
-    user = models.ForeignKey(User)
+    entry = models.ForeignKey(Entry, related_name='votes')
+    user = models.ForeignKey(User, related_name='votes')
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
