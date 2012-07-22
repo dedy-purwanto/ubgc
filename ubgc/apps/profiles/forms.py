@@ -4,7 +4,7 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
 
     username = forms.CharField(max_length=30)
-    name = forms.CharField(max_length=255)
+    name = forms.CharField(max_length=255, required=False)
     email_address = forms.EmailField(required=False)
 
     def __init__(self, *args, **kwargs):
