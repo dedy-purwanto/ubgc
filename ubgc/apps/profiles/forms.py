@@ -3,7 +3,6 @@ from .models import Profile
 
 class ProfileForm(forms.ModelForm):
 
-    username = forms.CharField(max_length=30)
     name = forms.CharField(max_length=255, required=False)
     email_address = forms.EmailField(required=False)
 
@@ -12,7 +11,6 @@ class ProfileForm(forms.ModelForm):
 
         try:
             if self.instance.pk:
-                self.fields['username'].initial = self.instance.user.username
                 self.fields['name'].initial = self.instance.user.first_name
                 self.fields['email'].initial = self.instance.user.email
         
