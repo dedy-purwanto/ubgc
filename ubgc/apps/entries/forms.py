@@ -10,6 +10,7 @@ class EntryForm(forms.ModelForm):
 
 
     class Meta:
+
         model = Entry
         exclude = (
                 'user',
@@ -21,5 +22,6 @@ class EntryForm(forms.ModelForm):
 class ScreenshotForm(forms.ModelForm):
 
     class Meta:
+
         model  = Screenshot
         exclude = ('entry', 'date_added')
