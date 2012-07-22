@@ -85,6 +85,8 @@ INSTALLED_APPS = (
     'socialregistration.contrib.twitter',
     'south',
     'widget_tweaks',
+
+    'home',
 )
 LOGGING = {
     'version': 1,
