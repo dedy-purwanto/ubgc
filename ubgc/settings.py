@@ -87,6 +87,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
 
     'entries',
+    'profiles',
     'home',
 )
 LOGGING = {
