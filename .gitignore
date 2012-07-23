@@ -1,5 +1,4 @@
 virtualenv/
 media/
-__init__.py
 *.pyc
 ubgc/settings_local.py
