@@ -2,3 +2,4 @@ virtualenv/
 media/
 *.pyc
 ubgc/settings_local.py
+ubgc/wsgi.py
