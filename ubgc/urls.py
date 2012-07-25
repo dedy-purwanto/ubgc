@@ -8,12 +8,13 @@ from home.views import HomeView, LogOutView
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'', include('social_auth.urls')),
+
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^logout/$', login_required(LogOutView.as_view()), name='logout'),
     url(r'^entries/', include('entries.urls', namespace='entries')),
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
 
-    url(r'^social/', include('socialregistration.urls', namespace = 'socialregistration')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
