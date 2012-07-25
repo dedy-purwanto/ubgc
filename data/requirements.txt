@@ -10,5 +10,6 @@ ipython==0.13
 mock==1.0b1
 oauth2==1.5.211
 psycopg2==2.4.5
+-e git://github.com/ahupp/python-magic.git@6c23fa27c62c1b3dc0da842fb5e06c7d7aecbfe2#egg=python_magic-dev
 python-openid==2.2.5
 wsgiref==0.1.2
