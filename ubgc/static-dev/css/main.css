@@ -32,10 +32,9 @@ td, th{
 }
 
 .vote_num{
-    font-size:120px;
-    padding-top:60px;
-    padding-bottom:30px;
-
+    font-size:60px;
+    font-weight:bold;
+    vertical-align:middle;
 }
 
 .top_entries_box, .recent_entries_box{
