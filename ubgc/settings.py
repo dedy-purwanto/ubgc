@@ -95,8 +95,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
-    'socialregistration',
-    'socialregistration.contrib.twitter',
     'south',
     'widget_tweaks',
     'easy_thumbnails',
