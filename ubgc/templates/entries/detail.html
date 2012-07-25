@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load url from future %}
 {% load thumbnail%}
+{% block title %}{{entry.title}}{%endblock%}
 {% block content %}
 <div class="span6">
     <h1>{{entry.title}}</h1>

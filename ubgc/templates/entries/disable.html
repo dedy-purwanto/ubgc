@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load url from future %}
 {% load thumbnail%}
+{% block title%}Disable Submission{% endblock %}
 {% block content %}
 <h1>{% if object.disabled %}Enable{% else %}Disable{% endif %} Entry</h1><hr />
 <div class="span12">
