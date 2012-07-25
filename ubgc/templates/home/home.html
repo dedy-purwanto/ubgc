@@ -1,18 +1,46 @@
 {% extends "base.html" %}
-{% load twitter %}
+{% load url from future %}
+{% load thumbnail %}
 {% block content %}
 
 <h1>UBGC</h1><hr />
 <span class="span6 top_entries_box">
     <h4>Top Entries:</h4><br />
     {% for entry in top_entries %}
-        {% include "home/entry_item.html" with entry=entry photo=entry.photos.all.0 %}
+        <div class="row">
+            <div class="span2">
+                <a href='{% url "entries:play" entry.pk entry.slug %}'><img src="{% thumbnail entry.photos.all.0.photo 140x100 crop %}" /></a>
+                <h3 class='pull-right'>
+                    {% if entry.num_votes > 0 %}
+                        {{entry.num_votes}} votes
+                    {% else %}
+                        No votes
+                    {% endif %}
+                </h3>
+            </div>
+            <div class="span4">
+                <strong><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></strong><br />
+                By <a href="{% url "profiles:detail" entry.user.pk %}">{{entry.user.profile.name}}</a><br />
+                {{entry.description|truncatewords:"25"}}
+            </div>
+        </div>
     {% endfor %}
 </span>
 <span class="span6 recent_entries_box">
     <h4>Recent Entries:</h4><br />
     {% for entry in recent_entries %}
-        {% include "home/entry_item.html" with entry=entry photo=entry.photos.all.0%}
+        <div class="row">
+            <div class="span1">
+                <a href='{% url "entries:play" entry.pk entry.slug %}'><img src="{% thumbnail entry.photos.all.0.photo 80x60 crop %}" /></a>
+            </div>
+            <div class="span4">
+                <strong><a href='{% url "entries:play" entry.pk entry.slug %}'>{{entry.title}}</a></strong> | 
+                By <a href="{% url "profiles:detail" entry.user.pk %}">{{entry.user.profile.name}}</a><br />
+                {{entry.description|truncatewords:"10"}}
+            </div>
+        </div>
+        <br />
+    
     {% endfor %}
 </span>
 
