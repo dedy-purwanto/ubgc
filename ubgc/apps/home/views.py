@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from django.contrib.auth import logout
+from django.contrib.flatpages.models import FlatPage
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
@@ -19,6 +20,13 @@ class HomeView(TemplateView):
 
         context['top_entries'] = top_entries[:15]
         context['recent_entries'] = recent_entries
+
+        #Show flatpage before entries if exist
+        try:
+            home_flatpage = FlatPage.objects.get(title="home_flatpage")
+            context['home_flatpage'] = home_flatpage
+        except FlatPage.DoesNotExist:
+            pass
 
         return context
 
