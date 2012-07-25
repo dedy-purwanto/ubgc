@@ -15,12 +15,16 @@ class EntryForm(forms.ModelForm):
     def clean_zip_file(self, *args, **kwargs):
         zip_file = self.cleaned_data['zip_file']
 
-        file_path = zip_file.temporary_file_path()
-        m = magic.Magic(mime=True)
-        mimetype = m.from_file(file_path)
+        try:
+            file_path = zip_file.temporary_file_path()
+            m = magic.Magic(mime=True)
+            mimetype = m.from_file(file_path)
 
-        if not mimetype == "application/zip":
-            raise forms.ValidationError("The file must be in zip format")
+            if not mimetype == "application/zip":
+                raise forms.ValidationError("The file must be in zip format")
+
+        except AttributeError:
+            pass
 
         return zip_file
 
