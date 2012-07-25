@@ -5,7 +5,6 @@
         <h1>{% if not object.pk %}Submit a new{% else %}Update{% endif %} entry</h1>
         <hr/>
     </div>
-    {{form.errors}}
     <form method="POST" enctype="multipart/form-data" class="form-horizontal">
         <fieldset>
             <div class="control-group{% if form.title.errors %} error {% endif %}" for="id_{{form.title.name}}">
