@@ -74,6 +74,11 @@ AUTHENTICATION_BACKENDS = (
     'socialregistration.contrib.twitter.auth.TwitterAuth',
 )
 
+FILE_UPLOAD_HANDLERS = (
+    #"django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+)
+
 ROOT_URLCONF = 'ubgc.urls'
 
 TEMPLATE_DIRS = (
