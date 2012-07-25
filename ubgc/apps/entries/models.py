@@ -16,6 +16,8 @@ class Entry(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     num_votes = models.IntegerField(default=0)
+    zip_file = models.FileField(upload_to='entries/zip_file/%Y/%m/%d')
+    
 
     def calculate_votes(self, is_delete=False):
         self.num_votes = self.votes.all().count()
