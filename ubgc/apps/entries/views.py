@@ -22,7 +22,7 @@ class EntryCreateUpdateMixin(object):
         self.object = None
         form_class = self.get_form_class()
 
-        form = form_class(request.POST or None, instance=self.get_object())
+        form = form_class(request.POST, request.FILES, instance=self.get_object())
 
         screenshot_formset = self.ScreenshotFormSet(request.POST, 
                 request.FILES, instance=self.get_object())
