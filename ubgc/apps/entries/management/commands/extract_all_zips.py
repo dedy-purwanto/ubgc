@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from entires.models import Entry
+from entries.models import Entry
 
 
 class Command(BaseCommand):
