@@ -1,7 +1,7 @@
 {% load url from future %}
 <html>
     <head>
-        <title>UBGC {% block title %} {%endblock %}</title>
+        <title>AduGim {% block title %} {%endblock %}</title>
 
         <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet">
@@ -11,7 +11,7 @@
             <div class="navbar-inner navbar-blue">
                 <div class="container">
                     <ul class="nav">
-                        <li><a href="{% url "home" %}"><strong>UB Game Competition</strong></a></li>
+                        <li><a href="{% url "home" %}"><strong>AduGim</strong></a></li>
                     </ul>
                     <ul class="nav pull-right">
                     {% if request.user.is_authenticated %}
