@@ -10,7 +10,6 @@ class Entry(models.Model):
     user = models.ForeignKey(User, related_name='entries')
     title = models.CharField(max_length=255)
     description = models.TextField()
-    embed_code = models.TextField()
     tags = models.TextField()
     disabled = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
