@@ -8,7 +8,9 @@
 <strong>Also read:</strong>
 <ul>
     {% for page in flatpages %}
-    <li> <a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% if not page.title == "home_flatpage" %}
+            <li> <a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endif %}
     {% endfor %}
 </ul>
 </div>
