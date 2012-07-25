@@ -1,7 +1,7 @@
 {% load url from future %}
 <html>
     <head>
-        <title>{{SITE_NAME}} {% block title %} {%endblock %}</title>
+        <title>{% block title %} {%endblock %} - {{SITE_NAME}}</title>
 
         <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet">
