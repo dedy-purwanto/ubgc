@@ -96,6 +96,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     'south',
+    'social_auth',
     'widget_tweaks',
     'easy_thumbnails',
 
