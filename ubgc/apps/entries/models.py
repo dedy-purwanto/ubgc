@@ -1,9 +1,13 @@
+import os, shutil, zipfile
+
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from easy_thumbnails.fields import ThumbnailerImageField
+
+from django.conf import settings
 
 class Entry(models.Model):
 
@@ -25,7 +29,12 @@ class Entry(models.Model):
         self.save()
 
     def extract_zip_file(self):
-        pass
+        file_path = "%s%s" % (settings.MEDIA_ROOT, self.zip_file)
+        dir_path = "%s_extract" % (file_path)
+        zip_file = zipfile.ZipFile(file_path)
+        shutil.rmtree(dir_path, ignore_errors=True)
+        os.makedirs(dir_path)
+        zip_file.extractall(path=dir_path)
 
     @property
     def slug(self):
