@@ -13,8 +13,8 @@
                     <ul class="nav">
                         <li><a href="{% url "home" %}"><strong>UB Game Competition</strong></a></li>
                     </ul>
-                    {% if request.user.is_authenticated %}
                     <ul class="nav pull-right">
+                    {% if request.user.is_authenticated %}
                         <li><a href="{% url "entries:new" %}">Submit Entry</a></li>
                         <li><a href="{% url "profiles:detail" request.user.pk %}">My Profile</a></li>
                         <li><a href="{% url "profiles:submissions" %}">My Submissions</a></li>
@@ -33,8 +33,10 @@
                                 <li><a href="{% url "logout" %}">Log Out</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    {% else %}
+                    <li><a href="{% url 'socialauth_begin' 'facebook' %}?next={{ request.path }}"><strong>Login with Facebook</strong></a></li>
                     {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>
@@ -76,6 +78,7 @@
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-transition.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-alert.js"></script>
+        gi
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-modal.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-dropdown.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-scrollspy.js"></script>
