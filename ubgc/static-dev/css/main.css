@@ -64,7 +64,7 @@ td, th{
 }
 
 #entry_playbox iframe{
-    width:800px;
+    width:100%;
     height:500px;
     border:none;
 }
