@@ -18,7 +18,7 @@
             {% if request.user.is_authenticated %}
                 <strong>You've voted this</strong>
             {% else %}
-                <strong>Login to vote</strong>
+            <strong><a href="{% url 'socialauth_begin' 'facebook' %}?next={{ request.path }}">Login to vote</a></strong>
             {% endif %}
         {% endif %}
     </form>
