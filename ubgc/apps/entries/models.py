@@ -24,7 +24,7 @@ class Entry(models.Model):
             self.num_votes -= 1
         self.save()
 
-    def extract_zip(self):
+    def extract_zip_file(self):
         pass
 
     @property
