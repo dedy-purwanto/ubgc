@@ -24,6 +24,9 @@ class Entry(models.Model):
             self.num_votes -= 1
         self.save()
 
+    def extract_zip(self):
+        pass
+
     @property
     def slug(self):
         return slugify(self.title)
