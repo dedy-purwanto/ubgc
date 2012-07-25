@@ -7,9 +7,8 @@
     Author: <a href="{% url "profiles:detail" entry.user.pk %}">{{entry.user.profile.name}}</a>
     <hr />
 
-    <div>
-        [Code goes here]
-        <br /><br />
+    <div id="entry_playbox">
+        <iframe src="{{entry.zip_file_url}}_extract/index.html"></iframe>
     </div>
 
     <hr />
