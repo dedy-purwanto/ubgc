@@ -2,64 +2,61 @@
 {% load url from future %}
 {% load thumbnail%}
 {% block content %}
-<div class="span8">
+<div class="span6">
     <h1>{{entry.title}}</h1>
     Author: <a href="{% url "profiles:detail" entry.user.pk %}">{{entry.user.profile.name}}</a>
+</div>
+<div class="span6 pull-right" style="text-align:right">
+    <br />
+    <form method="post" action="{% url "entries:vote" entry.pk %}">
+        <span class="vote_num">{{entry.num_votes}}</span>
+        <strong>votes</strong> | 
+        {% csrf_token %}
+        {% if can_vote %}
+            <input type="submit" class="btn btn-primary" value="Vote {{entry.title}}">
+        {% else %}
+            {% if request.user.is_authenticated %}
+                <strong>You've voted this</strong>
+            {% else %}
+                <strong>Login to vote</strong>
+            {% endif %}
+        {% endif %}
+    </form>
+</div>
+<div class="span12">
     <hr />
-
     <div id="entry_playbox">
         <iframe src="{{entry.zip_file_url}}_extract/index.html"></iframe>
     </div>
-
-    <hr />
-    {% for photo in entry.photos.all %}
-    <a href='{{photo.photo.url}}' target='_blank'><img src="{% thumbnail photo.photo 100x100 crop %}" /></a>
-    {% endfor %}
-    <hr />
+</div>
+<div class="span6">
+    <br />
     <p>
-    <strong>Description:</strong><br />
-    {{entry.description}}<br /><br />
-    Date submitted: {{entry.date_added}}<br />
-    Tags: 
-    {% for tag in entry.tag_list %}
-    <span class="badge">{{tag.strip}}</span>
-    {% endfor %}
+        <strong>Description:</strong><br />
+        {{entry.description}}<br /><br />
+        Date submitted: {{entry.date_added}}<br />
+        Tags: 
+        {% for tag in entry.tag_list %}
+        <span class="badge">{{tag.strip}}</span>
+        {% endfor %}
     </p>
-    
-
+    <hr />
+    <div>
+        <strong>Screenshots : </strong>
+    </div>
+    <div> 
+        {% if entry.photos.exists %}
+            {% for photo in entry.photos.all %}
+            <a href='{{photo.photo.url}}' target='_blank'><img src="{% thumbnail photo.photo 100x100 crop %}" /></a>
+            {% endfor %}
+        {% endif %}
+    </div>
 
 </div>
-<div class="span4">
-        <div class="row">
-            <div class='pull-right'>
-                <h1 class="vote_num">{{entry.num_votes}}</h1>
-                <h2 class='pull-right'>votes</h2>
-            </div>
-        </div>
-        <div class="row">
-            <hr />
-            <div class="pull-right">
-                {% if can_vote %}
-                <form method="post" action="{% url "entries:vote" entry.pk %}">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-primary pull-right" value="Vote {{entry.title}}">
-                </form>
-                {% else %}
-                    {% if request.user.is_authenticated %}
-                        <h3>You've voted this</h3>
-                    {% else %}
-                        <h3>Login to vote</h3>
-                    {% endif %}
-                {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="pull-right">
-                <div class="fb-comments" data-href="{{request.get_absolute_uri}}" data-num-posts="15" data-width="300"></div>
-            </div>
-
-
-        </div>
-
+<div class="span6">
+    <br />
+    <div class="pull-right">
+        <div class="fb-comments" data-href="{{request.get_absolute_uri}}" data-num-posts="15" data-width="460"></div>
+    </div>
 </div>
 {% endblock %}
