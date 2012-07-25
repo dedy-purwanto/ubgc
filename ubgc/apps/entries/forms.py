@@ -9,8 +9,7 @@ class EntryForm(forms.ModelForm):
     def save(self, user, *args, **kwargs):
         self.instance.user = user
         entry = super(EntryForm, self).save(*args, **kwargs)
-
-
+        entry.extract_zip_file()
         return entry
 
     def clean_zip_file(self, *args, **kwargs):
