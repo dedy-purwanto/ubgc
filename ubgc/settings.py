@@ -70,8 +70,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
-    'socialregistration.contrib.twitter.auth.TwitterAuth',
 )
 
 FILE_UPLOAD_HANDLERS = (
