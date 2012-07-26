@@ -33,6 +33,7 @@ class Entry(models.Model):
     # to overcome cross domain security issue
     def append_content(self):
         easyXDM = """
+            <script src="http://consumer.easyxdm.net/current/easyXDM.min.js"></script>
             <script>
             var socket = new easyXDM.Socket({
                 onReady:  function(){
