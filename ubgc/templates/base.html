@@ -7,7 +7,7 @@
         <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet">
     </head>
-    <body>
+    <body onload="{% block body-onload-js%}{%endblock%}">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner navbar-blue">
                 <div class="container">
@@ -92,6 +92,7 @@
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-collapse.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-carousel.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-typeahead.js"></script>
+        <script src="{{ STATIC_URL }}js/main.js">
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
