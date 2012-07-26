@@ -2,7 +2,7 @@
 {% load url from future %}
 {% load thumbnail%}
 {% block title %}{{entry.title}}{%endblock%}
-{% block body-onload-js %}resizeFrame(document.getElementById('iframe_box')){%endblock%}
+{% block body-onload-js %}resizeFrame('entry_playbox', '{{entry.zip_file.url}}_extract/index.html'){%endblock%}
 {% block content %}
 <div class="span6">
     <h1>{{entry.title}}</h1>
@@ -28,7 +28,6 @@
 <div class="span12">
     <hr />
     <div id="entry_playbox">
-        <iframe src="{{entry.zip_file.url}}_extract/index.html" id="iframe_box"></iframe>
     </div>
 </div>
 <div class="span6">
