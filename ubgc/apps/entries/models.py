@@ -9,6 +9,8 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 from django.conf import settings
 
+from bs4 import BeautifulSoup
+
 class Entry(models.Model):
 
     user = models.ForeignKey(User, related_name='entries')
@@ -28,6 +30,25 @@ class Entry(models.Model):
             self.num_votes -= 1
         self.save()
 
+    # We need to append the content of index html with a js
+    # to overcome cross domain security issue
+    def append_content(self):
+        easyXDM = ""
+        try:
+            file_path = "%s%s" % (settings.MEDIA_ROOT, self.zip_file)
+            dir_path = "%s_extract" % (file_path)
+            index_html = open('%s/index.html' % dir_path, 'r')
+
+            soup = BeautifulSoup(index_html.read())
+            if soup.find('body'):
+                soup.body.append(easyXDM)
+
+                index_html = open('%s/index.html' % dir_path, 'w')
+                index_html.write(str(soup))
+
+        except IOError:
+            pass
+
     def extract_zip_file(self):
         file_path = "%s%s" % (settings.MEDIA_ROOT, self.zip_file)
         dir_path = "%s_extract" % (file_path)
@@ -35,6 +56,8 @@ class Entry(models.Model):
         shutil.rmtree(dir_path, ignore_errors=True)
         os.makedirs(dir_path)
         zip_file.extractall(path=dir_path)
+
+        self.append_content()
 
     @property
     def slug(self):
