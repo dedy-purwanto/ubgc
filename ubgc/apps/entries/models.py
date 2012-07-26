@@ -1,6 +1,7 @@
 import os, shutil, zipfile
 
 from django.db import models
+from django.utils.encoding import smart_str
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_delete
@@ -8,8 +9,6 @@ from django.dispatch import receiver
 from easy_thumbnails.fields import ThumbnailerImageField
 
 from django.conf import settings
-
-from bs4 import BeautifulSoup
 
 class Entry(models.Model):
 
@@ -34,25 +33,24 @@ class Entry(models.Model):
     # to overcome cross domain security issue
     def append_content(self):
         easyXDM = """
+            <script>
             var socket = new easyXDM.Socket({
                 onReady:  function(){
                     socket.postMessage(document.body.scrollHeight)
                 }
             });
+            </script>
             """
         try:
             file_path = "%s%s" % (settings.MEDIA_ROOT, self.zip_file)
             dir_path = "%s_extract" % (file_path)
             index_html = open('%s/index.html' % dir_path, 'r')
 
-            soup = BeautifulSoup(index_html.read())
-            if soup.find('body'):
-                tag = soup.new_tag("script")
-                tag.string = easyXDM
-                soup.body.append(tag)
+            content = index_html.read()
+            content = content.replace("</body>", "%s</body>" % easyXDM)
 
-                index_html = open('%s/index.html' % dir_path, 'w')
-                index_html.write(str(soup))
+            index_html = open('%s/index.html' % dir_path, 'w')
+            index_html.write(content)
 
         except IOError:
             pass
