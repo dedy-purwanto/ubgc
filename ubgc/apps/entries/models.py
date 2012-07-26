@@ -33,7 +33,13 @@ class Entry(models.Model):
     # We need to append the content of index html with a js
     # to overcome cross domain security issue
     def append_content(self):
-        easyXDM = ""
+        easyXDM = """
+            var socket = new easyXDM.Socket({
+                onReady:  function(){
+                    socket.postMessage(document.body.scrollHeight)
+                }
+            });
+            """
         try:
             file_path = "%s%s" % (settings.MEDIA_ROOT, self.zip_file)
             dir_path = "%s_extract" % (file_path)
@@ -41,7 +47,9 @@ class Entry(models.Model):
 
             soup = BeautifulSoup(index_html.read())
             if soup.find('body'):
-                soup.body.append(easyXDM)
+                tag = soup.new_tag("script")
+                tag.string = easyXDM
+                soup.body.append(tag)
 
                 index_html = open('%s/index.html' % dir_path, 'w')
                 index_html.write(str(soup))
