@@ -69,3 +69,11 @@ td, th{
     width:100%;
     border:none;
 }
+
+.recent_entries_box{
+    background:#ffeeee;
+}
+.recent_entries_box a{
+    color:#cc1212;
+
+}
