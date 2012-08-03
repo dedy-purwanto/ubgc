@@ -37,7 +37,7 @@ class Entry(models.Model):
             <script>
             var socket = new easyXDM.Socket({
                 onReady:  function(){
-                    socket.postMessage(document.body.scrollHeight)
+                    socket.postMessage(document.body.scrollHeight + 50)
                 }
             });
             </script>
