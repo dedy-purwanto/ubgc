@@ -2,7 +2,9 @@
 {% load url from future %}
 {% load thumbnail%}
 {% block title %}{{entry.title}}{%endblock%}
+{% comment %}
 {% block body-onload-js %}resizeFrame('entry_playbox', '{{entry.zip_file.url}}_extract/index.html'){%endblock%}
+{% endcomment %}
 {% block content %}
 <div class="span6">
     <h1>{{entry.title}}</h1>
@@ -28,6 +30,8 @@
 <div class="span12">
     <hr />
     <div id="entry_playbox">
+        <iframe style='width:100%;height:900px;border:none' border='0' src='{{entry.zip_file.url}}_extract/index.html'>
+        </iframe>
     </div>
 </div>
 <div class="span6">
